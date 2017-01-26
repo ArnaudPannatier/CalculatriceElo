@@ -11,22 +11,62 @@ import UIKit
 class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
     @IBOutlet weak var Defaite: UILabel!
+    var displayDefaite : Double {
+        get {
+            return Double(Defaite.text!)!
+        }
+        set {
+            Defaite.text = String(newValue)
+            
+        }
+    }
     @IBOutlet weak var Egalite: UILabel!
+    var displayEgalite : Double {
+        get {
+            return Double(Egalite.text!)!
+        }
+        set {
+            Egalite.text = String(newValue)
+            
+        }
+    }
     @IBOutlet weak var Gain: UILabel!
+    var displayGain : Double {
+        get {
+            return Double(Gain.text!)!
+        }
+        set {
+            Gain.text = String(newValue)
+        
+        }
+    }
     @IBOutlet weak var Coeff: UIPickerView!
     @IBOutlet weak var EloAdversaire: UITextField!
     @IBOutlet weak var EloJoueur: UITextField!
     
     @IBOutlet weak var BottomConstraint: NSLayoutConstraint!
     
-    var coeffForComputation: Int = 12
+    var coeffForComputation: Double = 24
+    var EloPlayer: Double? {
+        get  {
+            return Double(EloJoueur.text!)
+        } set {
+            joue()
+        }
+    }
+    var EloOpp: Double?{
+        get  {
+            return Double(EloAdversaire.text!)
+        } set {
+            joue()
+        }
+    }
     
-    let listCoeff: [String] = ["12","24","36"]
     
-    override func viewWillAppear(animated: Bool) {
+    let listCoeff: [String] = ["16","24","36"]
+    
+    override func viewWillAppear(_ animated: Bool) {
         EloJoueur.becomeFirstResponder()
-        
-        
     }
     
     override func viewDidLoad() {
@@ -37,44 +77,61 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         
         var CoeffAtDefaultPosition: String?
         
-        CoeffAtDefaultPosition = "12"
+        CoeffAtDefaultPosition = "24"
 
         
-        var defaultRowIndex = listCoeff.indexOf(CoeffAtDefaultPosition!)
+        var defaultRowIndex = listCoeff.index(of: CoeffAtDefaultPosition!)
         if(defaultRowIndex == nil) { defaultRowIndex = 0 }
         Coeff.selectRow(defaultRowIndex!, inComponent: 0, animated: false)
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(EloViewController.keyboardShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+            selector: #selector(EloViewController.keyboardShown(_:)),
+            name: NSNotification.Name.UIKeyboardDidShow,
+            object: nil)
+        
+        
         
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-    func keyboardShown(notification: NSNotification) {
-        let info  = notification.userInfo!
-        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]!
+    @IBAction func EditOpp(_ sender: UITextField) {
+        if let elo = Double(sender.text!) {
+            EloOpp = elo
+        }
         
-        let rawFrame = value.CGRectValue
-        let keyboardFrame = view.convertRect(rawFrame, fromView: nil)
+    }
+    @IBAction func EditPlayer(_ sender: UITextField) {
+        if let elo = Double(sender.text!) {
+            EloPlayer = elo
+        }
+    }
+    
+    func keyboardShown(_ notification: Notification) {
+        let info  = notification.userInfo!
+        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]! as AnyObject
+        
+        let rawFrame = value.cgRectValue
+        let keyboardFrame = view.convert(rawFrame!, from: nil)
         
         BottomConstraint.constant = keyboardFrame.height
     }
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return listCoeff.count;
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return listCoeff[row]
     }
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
+        
         if(row == 0)
         {
-            coeffForComputation = 12
+            coeffForComputation = 16
         }
         else if(row == 1)
         {
@@ -84,12 +141,27 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         {
             coeffForComputation = 36
         }
+        joue()
+    }
+    func joue(){
+        if let a = EloPlayer {
+            if let b = EloOpp {
+                let diff = a-b
+
+                
+                let puissance = pow(10, Double(-diff/400))
+                displayGain = round( 10*coeffForComputation*(1-1/(1+puissance)))/10
+                displayEgalite = round( 10*coeffForComputation*(0.5-1/(1+puissance)))/10
+                displayDefaite = round( 10*coeffForComputation*(0-1/(1+puissance)))/10
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
 
 
     
