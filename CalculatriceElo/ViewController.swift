@@ -97,7 +97,17 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
             object: nil)
         
         
+        let winTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(winStackTapped))
+        StackWin.isUserInteractionEnabled = true
+        StackWin.addGestureRecognizer(winTapGestureRecognizer)
         
+        let drawTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(drawStackTapped))
+        StackDraw.isUserInteractionEnabled = true
+        StackDraw.addGestureRecognizer(drawTapGestureRecognizer)
+       
+        let looseTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(looseStackTapped))
+        StackLoose.isUserInteractionEnabled = true
+        StackLoose.addGestureRecognizer(looseTapGestureRecognizer)
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -111,6 +121,24 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBAction func EditPlayer(_ sender: UITextField) {
         if let elo = Double(sender.text!) {
             EloPlayer = elo
+        }
+    }
+    func winStackTapped(){
+        if(EloPlayer != nil){
+            EloJoueur.text = String(EloPlayer!+displayGain)
+            EloPlayer = 0
+        }
+    }
+    func drawStackTapped(){
+        if(EloPlayer != nil){
+            EloJoueur.text = String(EloPlayer!+displayEgalite)
+            EloPlayer = 0
+        }
+    }
+    func looseStackTapped(){
+        if(EloPlayer != nil){
+            EloJoueur.text = String(EloPlayer!+displayDefaite)
+            EloPlayer = 0
         }
     }
     
@@ -155,7 +183,6 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         if let a = EloPlayer {
             if let b = EloOpp {
                 let diff = a-b
-
                 
                 let puissance = pow(10, Double(-diff/400))
                 displayGain = round( 10*coeffForComputation*(1-1/(1+puissance)))/10
