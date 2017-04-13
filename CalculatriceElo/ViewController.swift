@@ -43,8 +43,15 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var Coeff: UIPickerView!
     @IBOutlet weak var EloAdversaire: UITextField!
     @IBOutlet weak var EloJoueur: UITextField!
+    @IBOutlet weak var StackWin: UIStackView!
+    @IBOutlet weak var StackDraw: UIStackView!
+    @IBOutlet weak var StackLoose: UIStackView!
+
+    
     
     @IBOutlet weak var BottomConstraint: NSLayoutConstraint!
+    
+    
     
     var coeffForComputation: Double = 24
     var EloPlayer: Double? {
@@ -88,6 +95,7 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
             selector: #selector(EloViewController.keyboardShown(_:)),
             name: NSNotification.Name.UIKeyboardDidShow,
             object: nil)
+        
         
         
         
@@ -156,6 +164,9 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
             }
         }
     }
+
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
