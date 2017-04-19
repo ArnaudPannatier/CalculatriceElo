@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "Draw"; ObjectID = "3dz-8V-mzi"; */
+"3dz-8V-mzi.text" = "Nulle";
+
+/* Class = "UILabel"; text = "Loss"; ObjectID = "5DP-Hn-qlG"; */
+"5DP-Hn-qlG.text" = "Défaite";
+
+/* Class = "UILabel"; text = "Win"; ObjectID = "6pK-AN-tfw"; */
+"6pK-AN-tfw.text" = "Victoire";
+
+/* Class = "UITextField"; placeholder = "Opponent"; ObjectID = "7PK-Es-bZD"; */
+"7PK-Es-bZD.placeholder" = "Adversaire";
+
+/* Class = "UILabel"; text = "+0"; ObjectID = "J1y-hH-BoT"; */
+"J1y-hH-BoT.text" = "+0";
+
+/* Class = "UITextField"; accessibilityLabel = "Player"; ObjectID = "Veg-3h-9Zc"; */
+"Veg-3h-9Zc.accessibilityLabel" = "Joueur";
+
+/* Class = "UITextField"; placeholder = "Player"; ObjectID = "Veg-3h-9Zc"; */
+"Veg-3h-9Zc.placeholder" = "Joueur";
+
+/* Class = "UILabel"; text = "+0"; ObjectID = "b8K-e9-OdQ"; */
+"b8K-e9-OdQ.text" = "+0";
+
+/* Class = "UILabel"; text = "-0"; ObjectID = "cci-lr-kpZ"; */
+"cci-lr-kpZ.text" = "-0";
+
+/* Class = "UIPickerView"; accessibilityLabel = "Coefficient"; ObjectID = "dzt-yN-laM"; */
+"dzt-yN-laM.accessibilityLabel" = "Coefficient";

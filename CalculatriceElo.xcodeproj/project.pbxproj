@@ -16,6 +16,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B9E9AAA1EA7896C0084E5DE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		7B9E9AAB1EA7896C0084E5DE /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7B9E9AAC1EA78B8F0084E5DE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		7B9E9AAD1EA78B8F0084E5DE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7BDF2ED61E25491800F6DFB6 /* CalculatriceElo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalculatriceElo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDF2ED91E25491800F6DFB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7BDF2EDB1E25491800F6DFB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BDF2EDE1E25491800F6DFB6 /* Base */,
+				7B9E9AAA1EA7896C0084E5DE /* fr */,
+				7B9E9AAC1EA78B8F0084E5DE /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -169,6 +175,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				7BDF2EE61E25491900F6DFB6 /* Base */,
+				7B9E9AAB1EA7896C0084E5DE /* fr */,
+				7B9E9AAD1EA78B8F0084E5DE /* de */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -228,6 +237,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -276,6 +286,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ArnaudPannati.er246238.CalculatriceElo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -289,6 +300,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ArnaudPannati.er246238.CalculatriceElo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
