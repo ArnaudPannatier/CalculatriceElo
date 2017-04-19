@@ -183,11 +183,14 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
         if let a = EloPlayer {
             if let b = EloOpp {
                 let diff = a-b
+                let SD = sqrt(200*200+200*200)
                 
-                let puissance = pow(10, Double(-diff/400))
-                displayGain = round( 10*coeffForComputation*(1-1/(1+puissance)))/10
-                displayEgalite = round( 10*coeffForComputation*(0.5-1/(1+puissance)))/10
-                displayDefaite = round( 10*coeffForComputation*(0-1/(1+puissance)))/10
+                
+                
+                let G = 0.5*(1+erf(diff/SD/sqrt(2)))
+                displayGain =  round(10*coeffForComputation*(1-G))/10
+                displayEgalite = round(10*coeffForComputation*(0.5-G))/10
+                displayDefaite = round(10*coeffForComputation*(0-G))/10
             }
         }
     }
