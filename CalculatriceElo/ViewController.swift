@@ -123,26 +123,26 @@ class EloViewController: UIViewController, UIPickerViewDataSource, UIPickerViewD
             EloPlayer = elo
         }
     }
-    func winStackTapped(){
+    @objc func winStackTapped(){
         if(EloPlayer != nil){
             EloJoueur.text = String(EloPlayer!+displayGain)
             EloPlayer = 0
         }
     }
-    func drawStackTapped(){
+    @objc func drawStackTapped(){
         if(EloPlayer != nil){
             EloJoueur.text = String(EloPlayer!+displayEgalite)
             EloPlayer = 0
         }
     }
-    func looseStackTapped(){
+    @objc func looseStackTapped(){
         if(EloPlayer != nil){
             EloJoueur.text = String(EloPlayer!+displayDefaite)
             EloPlayer = 0
         }
     }
     
-    func keyboardShown(_ notification: Notification) {
+    @objc func keyboardShown(_ notification: Notification) {
         let info  = notification.userInfo!
         let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]! as AnyObject
         
